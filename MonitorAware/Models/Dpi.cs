@@ -127,6 +127,11 @@ namespace MonitorAware.Models
 		private void RaisePropertyChanged([CallerMemberName]string propertyName = null)
 			=> PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
+		[AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = true)]
+		public sealed class CallerMemberNameAttribute : Attribute
+		{
+		}
+
 		#endregion
 	}
 }

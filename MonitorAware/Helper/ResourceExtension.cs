@@ -20,14 +20,14 @@ namespace MonitorAware.Helper
 		/// <param name="oldUriString">Uri string of old resources to be removed (case-sensitive)</param>
 		public static void ApplyResource(this Application app, string newUriString, string oldUriString = "")
 		{
-			if (!string.IsNullOrWhiteSpace(oldUriString))
+			if(!string.IsNullOrEmpty(oldUriString?.Trim()))
 			{
 				var oldDictionary = app.Resources.MergedDictionaries.FirstOrDefault(x => x.Source.OriginalString == oldUriString);
 				if (oldDictionary != null)
 					app.Resources.MergedDictionaries.Remove(oldDictionary);
 			}
 
-			if (string.IsNullOrWhiteSpace(newUriString))
+			if (string.IsNullOrEmpty(newUriString?.Trim()))
 				return;
 
 			var newDictionary = new ResourceDictionary();
@@ -53,14 +53,14 @@ namespace MonitorAware.Helper
 		/// <param name="oldUriString">Uri string of old resources to be removed (case-sensitive)</param>
 		public static void ApplyResource(this ContentControl control, string newUriString, string oldUriString = "")
 		{
-			if (!string.IsNullOrWhiteSpace(oldUriString))
+			if (!string.IsNullOrEmpty(oldUriString?.Trim()))
 			{
 				var oldDictionary = control.Resources.MergedDictionaries.FirstOrDefault(x => x.Source.OriginalString == oldUriString);
 				if (oldDictionary != null)
 					control.Resources.MergedDictionaries.Remove(oldDictionary);
 			}
 
-			if (string.IsNullOrWhiteSpace(newUriString))
+			if (string.IsNullOrEmpty(newUriString?.Trim()))
 				return;
 
 			var newDictionary = new ResourceDictionary();

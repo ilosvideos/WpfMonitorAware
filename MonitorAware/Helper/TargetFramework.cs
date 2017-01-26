@@ -44,13 +44,15 @@ namespace MonitorAware.Helper
 		/// <returns>If succeeded, target framework version. If failed, null.</returns>
 		public static Version GetFrameworkVersion(Assembly assembly)
 		{
-			var attributes = assembly?.GetCustomAttributes(typeof(TargetFrameworkAttribute), false);
+//			var attributes = assembly?.GetCustomAttributes(typeof(TargetFrameworkAttribute), false);
+//
+//			var attribute = attributes?.FirstOrDefault() as TargetFrameworkAttribute;
+//			if (attribute == null)
+//				return null;
+//
+//			return new FrameworkName(attribute.FrameworkName).Version;
 
-			var attribute = attributes?.FirstOrDefault() as TargetFrameworkAttribute;
-			if (attribute == null)
-				return null;
-
-			return new FrameworkName(attribute.FrameworkName).Version;
+			return new Version();
 		}
 	}
 }

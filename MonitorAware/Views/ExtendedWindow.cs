@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Shell;
+//using System.Windows.Shell;
 using System.Windows.Threading;
 
 using MonitorAware.Helper;
@@ -81,7 +81,7 @@ namespace MonitorAware.Views
 			WindowHandler.Initialize(this, ChromeGrid);
 
 			WindowHandler.DpiChanged += OnDpiChanged;
-			WindowHandler.WindowActivatedChanged += OnWindowActivatedChanged;
+//			WindowHandler.WindowActivatedChanged += OnWindowActivatedChanged;
 			WindowHandler.DwmColorizationColorChanged += OnDwmColorizationColorChanged;
 
 			if (TitleBarIcon != null)
@@ -160,7 +160,7 @@ namespace MonitorAware.Views
 			WindowHandler.Close();
 
 			WindowHandler.DpiChanged -= OnDpiChanged;
-			WindowHandler.WindowActivatedChanged -= OnWindowActivatedChanged;
+//			WindowHandler.WindowActivatedChanged -= OnWindowActivatedChanged;
 			WindowHandler.DwmColorizationColorChanged -= OnDwmColorizationColorChanged;
 
 			if (TitleBarIcon != null)
@@ -370,10 +370,10 @@ namespace MonitorAware.Views
 
 		private void RegisterCommands()
 		{
-			this.CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, MinimizeExecuted));
-			this.CommandBindings.Add(new CommandBinding(SystemCommands.MaximizeWindowCommand, MaximizeExecuted, CanMaximizeExecute));
-			this.CommandBindings.Add(new CommandBinding(SystemCommands.RestoreWindowCommand, RestoreExecuted, CanRestoreExecute));
-			this.CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, CloseExecuted));
+//			this.CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, MinimizeExecuted));
+//			this.CommandBindings.Add(new CommandBinding(SystemCommands.MaximizeWindowCommand, MaximizeExecuted, CanMaximizeExecute));
+//			this.CommandBindings.Add(new CommandBinding(SystemCommands.RestoreWindowCommand, RestoreExecuted, CanRestoreExecute));
+//			this.CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, CloseExecuted));
 		}
 
 		private void ManageCommands()
@@ -406,7 +406,7 @@ namespace MonitorAware.Views
 
 		private void MinimizeExecuted(object sender, ExecutedRoutedEventArgs e)
 		{
-			SystemCommands.MinimizeWindow(this);
+//			SystemCommands.MinimizeWindow(this);
 		}
 
 		/// <summary>
@@ -433,8 +433,8 @@ namespace MonitorAware.Views
 
 		private void MaximizeExecuted(object sender, ExecutedRoutedEventArgs e)
 		{
-			if (this.WindowState != WindowState.Maximized)
-				SystemCommands.MaximizeWindow(this);
+//			if (this.WindowState != WindowState.Maximized)
+//				SystemCommands.MaximizeWindow(this);
 		}
 
 		private void CanMaximizeExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -469,8 +469,8 @@ namespace MonitorAware.Views
 
 		private void RestoreExecuted(object sender, ExecutedRoutedEventArgs e)
 		{
-			if (this.WindowState == WindowState.Maximized)
-				SystemCommands.RestoreWindow(this);
+//			if (this.WindowState == WindowState.Maximized)
+//				SystemCommands.RestoreWindow(this);
 		}
 
 		private void CanRestoreExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -505,7 +505,7 @@ namespace MonitorAware.Views
 
 		private void CloseExecuted(object target, ExecutedRoutedEventArgs e)
 		{
-			SystemCommands.CloseWindow(this);
+//			SystemCommands.CloseWindow(this);
 		}
 
 		#endregion
@@ -950,11 +950,11 @@ namespace MonitorAware.Views
 			{
 				if (ChromeOutmostBorder != null)
 				{
-					ChromeOutmostBorder.BorderThickness = new Thickness(
-						SystemParameters.WindowResizeBorderThickness.Left + SystemParameters.WindowNonClientFrameThickness.Left,
-						SystemParameters.WindowResizeBorderThickness.Left + SystemParameters.WindowNonClientFrameThickness.Left, // Use Left values.
-						SystemParameters.WindowResizeBorderThickness.Right + SystemParameters.WindowNonClientFrameThickness.Right,
-						SystemParameters.WindowResizeBorderThickness.Bottom + SystemParameters.WindowNonClientFrameThickness.Bottom);
+//					ChromeOutmostBorder.BorderThickness = new Thickness(
+//						SystemParameters.WindowResizeBorderThickness.Left + SystemParameters.WindowNonClientFrameThickness.Left,
+//						SystemParameters.WindowResizeBorderThickness.Left + SystemParameters.WindowNonClientFrameThickness.Left, // Use Left values.
+//						SystemParameters.WindowResizeBorderThickness.Right + SystemParameters.WindowNonClientFrameThickness.Right,
+//						SystemParameters.WindowResizeBorderThickness.Bottom + SystemParameters.WindowNonClientFrameThickness.Bottom);
 
 					captionHeight += ChromeOutmostBorder.BorderThickness.Top;
 				}
@@ -1029,9 +1029,9 @@ namespace MonitorAware.Views
 			if (TitleBarGrid != null)
 				captionHeight += Math.Round((TitleBarGrid.Height + ContentBorderThickness.Top) * factorFromSystemY);
 
-			var windowChrome = WindowChrome.GetWindowChrome(this);
-			if (windowChrome != null)
-				windowChrome.CaptionHeight = Math.Max(captionHeight - SystemParameters.WindowResizeBorderThickness.Top, 0D);
+//			var windowChrome = WindowChrome.GetWindowChrome(this);
+//			if (windowChrome != null)
+//				windowChrome.CaptionHeight = Math.Max(captionHeight - SystemParameters.WindowResizeBorderThickness.Top, 0D);
 		}
 
 		/// <summary>
@@ -1160,11 +1160,11 @@ namespace MonitorAware.Views
 			if (e.ClickCount == 1) // Single click
 			{
 				var clickPoint = this.PointToScreen(e.GetPosition(null));
-				SystemCommands.ShowSystemMenu(this, new Point(clickPoint.X + 1, clickPoint.Y + 1));
+//				SystemCommands.ShowSystemMenu(this, new Point(clickPoint.X + 1, clickPoint.Y + 1));
 			}
 			else if ((e.ClickCount == 2) && (e.LeftButton == MouseButtonState.Pressed)) // Double Click
 			{
-				SystemCommands.CloseWindow(this);
+//				SystemCommands.CloseWindow(this);
 			}
 		}
 

@@ -18,7 +18,7 @@ namespace MonitorAware.Models
 		/// Args true:  Window is being activated.
 		/// Args false: Window is being deactivated.
 		/// </remarks>
-		internal event EventHandler<bool> WindowActivatedChanged;
+//		internal event EventHandler<bool> WindowActivatedChanged;
 
 		/// <summary>
 		/// DWM colorization color changed event
@@ -47,11 +47,11 @@ namespace MonitorAware.Models
 					{
 						case NativeMethod.WA_ACTIVE:
 						case NativeMethod.WA_CLICKACTIVE:
-							WindowActivatedChanged?.Invoke(this, true); // Activated.
+//							WindowActivatedChanged?.Invoke(this, true); // Activated.
 							break;
 
 						case NativeMethod.WA_INACTIVE:
-							WindowActivatedChanged?.Invoke(this, false); // Deactivated.
+//							WindowActivatedChanged?.Invoke(this, false); // Deactivated.
 							break;
 					}
 					break;

@@ -24,7 +24,7 @@ namespace MonitorAware.Helper
 			if (!enumType.IsEnum)
 				throw new ArgumentException("The type must be Enum.", nameof(enumType));
 
-			if (string.IsNullOrWhiteSpace(value))
+			if (string.IsNullOrEmpty(value?.Trim()))
 				return false;
 
 			return Enum.GetNames(enumType).Any(x => string.Compare(x, value, comparisonType) == 0);
@@ -46,7 +46,7 @@ namespace MonitorAware.Helper
 			if (!enumType.IsEnum)
 				throw new ArgumentException("The type must be Enum.", nameof(enumType));
 
-			if (string.IsNullOrWhiteSpace(value))
+			if (string.IsNullOrEmpty(value?.Trim()))
 				throw new ArgumentNullException(nameof(value));
 
 			var name = Enum.GetNames(enumType).FirstOrDefault(x => string.Compare(x, value, comparisonType) == 0);
@@ -70,7 +70,7 @@ namespace MonitorAware.Helper
 			if (!typeof(TEnum).IsEnum)
 				throw new ArgumentException("The type must be Enum.", nameof(TEnum));
 
-			if (string.IsNullOrWhiteSpace(value))
+			if (string.IsNullOrEmpty(value?.Trim()))
 			{
 				result = default(TEnum);
 				return false;
