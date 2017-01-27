@@ -4,6 +4,7 @@
 					   xmlns:ma="clr-namespace:MonitorAware.Views;assembly=MonitorAware"
 					   x:Name="WindowRoot"
 					   Title="WPF Monitor Aware Window"
+                       ResizeMode="NoResize"
 					   FontFamily="Segoe UI"
 					   Height="200" Width="500">
 

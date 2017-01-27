@@ -5,6 +5,7 @@
 		x:Name="WindowRoot"
 		Title="WPF Monitor Aware Property"
 		FontFamily="Segoe UI"
+        ResizeMode="NoResize"
 		Height="200" Width="500">
 	<ma:MonitorAwareProperty.AttachedProperty>
 		<ma:MonitorAwareProperty x:Name="MonitorProperty"/>

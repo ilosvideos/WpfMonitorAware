@@ -448,7 +448,7 @@ namespace MonitorAware.Models
 					break;
 
 				case (int)WindowMessage.WM_MOVE:
-					Debug.WriteLine("MOVE");
+//					Debug.WriteLine("MOVE");
 
 					if (_isEnteredSizeMove)
 					{
@@ -500,7 +500,8 @@ namespace MonitorAware.Models
 
 				while (testInfo != null)
 				{
-					var testRect = new Rect(new Point(_targetWindow.Left, _targetWindow.Top), testInfo.Size);
+				    Point realPointOnScreen = _targetWindow.PointToScreen(new Point(0, 0));
+					var testRect = new Rect(new Point(realPointOnScreen.X, realPointOnScreen.Y), testInfo.Size);
 
 					bool changesNow = true;
 
@@ -537,8 +538,8 @@ namespace MonitorAware.Models
 								// method.
 								Debug.WriteLine($"Old Size: {_targetWindow.Width}-{_targetWindow.Height}");
 
-								_targetWindow.Left = testRect.Left;
-								_targetWindow.Top = testRect.Top;
+//								_targetWindow.Left = testRect.Left;
+//								_targetWindow.Top = testRect.Top;
 								_targetWindow.Width = testRect.Width;
 								_targetWindow.Height = testRect.Height;
 
