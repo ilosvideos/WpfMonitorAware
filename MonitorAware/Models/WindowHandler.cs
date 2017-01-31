@@ -500,6 +500,12 @@ namespace MonitorAware.Models
 
 				while (testInfo != null)
 				{
+                    // If a window is closing on a non-system DPI screen the WM_DPICHANGED event gets called for some reason and the PointToScreen method will fail. Just don't bother doing a ChangeDpi since the window is closing. 
+				    if (PresentationSource.FromVisual(_targetWindow) == null)
+				    {
+				        return;
+				    }
+
 				    Point realPointOnScreen = _targetWindow.PointToScreen(new Point(0, 0));
 					var testRect = new Rect(new Point(realPointOnScreen.X, realPointOnScreen.Y), testInfo.Size);
 
