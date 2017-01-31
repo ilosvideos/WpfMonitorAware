@@ -197,6 +197,12 @@ namespace MonitorAware.Models
 		public event EventHandler<DpiChangedEventArgs> DpiChanged;
 
 		/// <summary>
+		/// MonitorAware Initialized event
+		/// </summary>
+		/// <remarks>This event is fired after the DPI of target Window has changed or will not change.</remarks>
+		public event EventHandler<EventArgs> MonitorAwareInitialized;
+
+		/// <summary>
 		/// Color profile path changed event
 		/// </summary>
 		/// <remarks>This event is fired when color profile path of the monitor to which target Window belongs has
@@ -288,6 +294,9 @@ namespace MonitorAware.Models
 
 			_targetSource = PresentationSource.FromVisual(_targetWindow) as HwndSource;
 			_targetSource?.AddHook(WndProc);
+
+			// Fire DpiChanged event last so that it can be utilized to supplement preceding changes
+			MonitorAwareInitialized?.Invoke(this, new EventArgs());
 		}
 
 		internal void Close()
