@@ -1,4 +1,5 @@
 ﻿using System;
+using MonitorAware.Models.Win32;
 
 namespace MonitorAware.Models
 {
@@ -18,14 +19,21 @@ namespace MonitorAware.Models
 		public Dpi NewDpi { get; private set; }
 
 		/// <summary>
+		/// Window Message
+		/// </summary>
+		public WindowMessage windowMessage { get; private set; }
+
+		/// <summary>
 		/// Constructor
 		/// </summary>
 		/// <param name="oldDpi">Old DPI</param>
 		/// <param name="newDpi">New DPI</param>
-		public DpiChangedEventArgs(Dpi oldDpi, Dpi newDpi)
+		/// <param name="windowMessage">Window Message</param>
+		public DpiChangedEventArgs(Dpi oldDpi, Dpi newDpi, WindowMessage windowMessage)
 		{
 			this.OldDpi = oldDpi;
 			this.NewDpi = newDpi;
+			this.windowMessage = windowMessage;
 		}
 	}
 }

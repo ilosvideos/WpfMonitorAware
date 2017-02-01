@@ -400,7 +400,7 @@ namespace MonitorAware.Models
 					switch (_currentStatus)
 					{
 						case WindowStatus.None:
-							ChangeDpi();
+							ChangeDpi(WindowStatus.None, WindowMessage.WM_DPICHANGED);
 							break;
 
 						case WindowStatus.LocationChanged:
@@ -408,7 +408,7 @@ namespace MonitorAware.Models
 							break;
 
 						case WindowStatus.SizeChanged:
-							ChangeDpi(WindowStatus.SizeChanged);
+							ChangeDpi(WindowStatus.SizeChanged, WindowMessage.WM_DPICHANGED);
 							break;
 					}
 
@@ -447,7 +447,7 @@ namespace MonitorAware.Models
 
 							Interlocked.Exchange(ref _dueInfo, lastInfo);
 
-							ChangeDpi(WindowStatus.LocationChanged);
+							ChangeDpi(WindowStatus.LocationChanged, WindowMessage.WM_EXITSIZEMOVE);
 						}
 
 						_currentStatus = WindowStatus.None;
@@ -465,7 +465,7 @@ namespace MonitorAware.Models
 						if (_countLocationChanged > _countSizeChanged)
 							_currentStatus = WindowStatus.LocationChanged;
 
-						ChangeDpi(WindowStatus.LocationChanged);
+						ChangeDpi(WindowStatus.LocationChanged, WindowMessage.WM_MOVE);
 					}
 					break;
 
@@ -497,7 +497,7 @@ namespace MonitorAware.Models
 		/// </remarks>
 		private object _blocker = null;
 
-		private void ChangeDpi(WindowStatus status = WindowStatus.None)
+		private void ChangeDpi(WindowStatus status = WindowStatus.None, WindowMessage windowMessage = WindowMessage.WM_NULL)
 		{
 			if (Interlocked.CompareExchange(ref _blocker, new object(), null) != null)
 				return;
@@ -579,7 +579,7 @@ namespace MonitorAware.Models
 
 						// Fire DpiChanged event last so that it can be utilized to supplement preceding changes
 						// in target Window.
-						DpiChanged?.Invoke(this, new DpiChangedEventArgs(oldDpi, WindowDpi));
+						DpiChanged?.Invoke(this, new DpiChangedEventArgs(oldDpi, WindowDpi, windowMessage));
 
 						// Take new information which is to be tested from _dueInfo again for the case where new
 						// information has been stored during this operation. If there is new information, repeat

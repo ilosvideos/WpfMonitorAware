@@ -1,8 +1,9 @@
 ﻿
 namespace MonitorAware.Models.Win32
 {
-	internal enum WindowMessage
+	public enum WindowMessage
 	{
+		WM_NULL = 0x0000,
 		WM_DPICHANGED = 0x02E0,
 
 		WM_ENTERSIZEMOVE = 0x0231,
